@@ -26,14 +26,10 @@ public class LeadAPI {
 	LeadService leadService;
 	
 	@PostMapping(value = "/addCustomer")
-	public ResponseEntity<ResponseSuccessDTO> addLead(@RequestBody LeadDTO leadDTO){
-		try {
-			leadService.addLead(leadDTO);
-			ResponseSuccessDTO response = new ResponseSuccessDTO("success", "Lead added successfully.");
-			return new ResponseEntity<ResponseSuccessDTO>(response, HttpStatus.CREATED);
-		}catch(Exception e) {
-			throw new ResponseStatusException(HttpStatus.CONFLICT, e.getLocalizedMessage());
-		}
+	public ResponseEntity<ResponseSuccessDTO> addLead(@RequestBody LeadDTO leadDTO) throws Exception{
+		leadService.addLead(leadDTO);
+		ResponseSuccessDTO response = new ResponseSuccessDTO("success", "Lead added successfully.");
+		return new ResponseEntity<ResponseSuccessDTO>(response, HttpStatus.CREATED);
 	}
 	
 	@GetMapping(value = "/getLeads")

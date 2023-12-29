@@ -1,24 +1,27 @@
 package com.mahindrafinance.validator;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.mahindrafinance.dto.LeadDTO;
 
 public class Validator {
 	
-	public void validateLead(LeadDTO leadDTO) throws Exception {
+	public void validateLead(LeadDTO leadDTO) throws ResponseStatusException {
 		if(!isValidName(leadDTO.getFirstName()))
-			throw new Exception("Invalid Value. Name contains only Alphabets.");
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Invalid Value. Name contains only Alphabets.");
 		
 		if(leadDTO.getMiddleName() != null && !isValidName(leadDTO.getMiddleName()))
-			throw new Exception("Invalid Value. Name contains only Alphabets.");
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Invalid Value. Name contains only Alphabets.");
 		
 		if(!isValidName(leadDTO.getLastName()))
-			throw new Exception("Invalid Value. Name contains only Alphabets.");
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Invalid Value. Name contains only Alphabets.");
 		
 		if(!isValidMobileNumber(leadDTO.getMobileNumber().toString()))
-			throw new Exception("Invalid Mobile Number. Mobile Number should not more than 10 and First Number is start from more than 5.");
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Invalid Mobile Number. Mobile Number should not more than 10 and First Number is start from more than 5.");
 		
 		if(!isValidEmail(leadDTO.getEmail()))
-			throw new Exception("Invalid Email. Use Correct Email");
+			throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Invalid Email. Use Correct Email");
 	}
 	
 	public Boolean isValidName(String firstName) {
