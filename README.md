@@ -2,9 +2,9 @@
 Mahindra Fin. Assessment Solution
 
 1. API to create Lead in Postgress DB.
-   -> API URL : localhost:8080/mahindrafinance/addCustomer
-   -> Http Method : POST
-   -> Request Body :
+   a. API URL : localhost:8080/mahindrafinance/addCustomer
+   b. Http Method : POST
+   c. Request Body :
         {
         "leadId" : 4479,
         "firstName" : "Ravi",
@@ -15,14 +15,14 @@ Mahindra Fin. Assessment Solution
         "dob" : "2023-12-01",
         "email" : "ravi@gmail.com"
         }
-   -> Response :
+   d. Response :
       Success :
          {
             "status": "success",
             "data": "Lead added successfully."
          }
 
-       Failure :
+    e. Failure :
          {
           "status": "erorr",
           "errorResponse": {
