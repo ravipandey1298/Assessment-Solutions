@@ -15,14 +15,13 @@ Mahindra Fin. Assessment Solution
         "dob" : "2023-12-01",
         "email" : "ravi@gmail.com"
         }
-   d. Response :
-      Success :
+   d. Success Response :
          {
             "status": "success",
             "data": "Lead added successfully."
          }
 
-    e. Failure :
+    e. Failure Response :
          {
           "status": "erorr",
           "errorResponse": {
@@ -30,3 +29,32 @@ Mahindra Fin. Assessment Solution
               "message": "Lead Already Present in Database."
               }
           }
+   
+3. Getting All leads from DB based on Mobile Number.
+      a. API URL : localhost:8080/mahindrafinance/getLeads?mobileNumber=6989898978
+      b. Http Method : 
+      c. Success Response :
+            {
+                "status": "success",
+                "datas": [
+                             {
+                                 "leadId": 4479,
+                                 "firstName": "Ravi",
+                                 "middleName": "Kant",
+                                 "lastName": "Pandey",
+                                 "mobileNumber": "6989898978",
+                                 "gender": "Male",
+                                 "dob": "2023-12-01",
+                                 "email": "ravi@gmail.com"
+                             }
+                         ]
+                     }
+
+      d. Failure Response :
+            {
+                "status": "erorr",
+                "errorResponse": {
+                    "code": "404 NOT_FOUND",
+                    "message": "No Leads Found with the Mobile Number."
+                 }
+             }
