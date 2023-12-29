@@ -21,25 +21,21 @@ import com.mahindrafinance.service.LeadService;
 @RestController
 @RequestMapping(value = "/mahindrafinance")
 public class LeadAPI {
-	
+
 	@Autowired
 	LeadService leadService;
-	
+
 	@PostMapping(value = "/addCustomer")
-	public ResponseEntity<ResponseSuccessDTO> addLead(@RequestBody LeadDTO leadDTO) throws Exception{
+	public ResponseEntity<ResponseSuccessDTO> addLead(@RequestBody LeadDTO leadDTO) throws Exception {
 		leadService.addLead(leadDTO);
 		ResponseSuccessDTO response = new ResponseSuccessDTO("success", "Lead added successfully.");
 		return new ResponseEntity<ResponseSuccessDTO>(response, HttpStatus.CREATED);
 	}
-	
+
 	@GetMapping(value = "/getLeads")
-	public ResponseEntity<ResponseSuccessDTO> getLeads(@RequestParam("mobileNumber") Long mobileNumber){
-		try {
+	public ResponseEntity<ResponseSuccessDTO> getLeads(@RequestParam("mobileNumber") Long mobileNumber) throws Exception{
 			List<Lead> leads = leadService.getLeads(mobileNumber);
 			ResponseSuccessDTO response = new ResponseSuccessDTO("success", leads);
 			return new ResponseEntity<ResponseSuccessDTO>(response, HttpStatus.OK);
-		}catch(Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getLocalizedMessage());
-		}
 	}
 }
