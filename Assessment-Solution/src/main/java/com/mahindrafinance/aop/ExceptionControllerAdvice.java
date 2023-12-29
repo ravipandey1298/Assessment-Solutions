@@ -15,8 +15,8 @@ public class ExceptionControllerAdvice {
 	public ResponseEntity<ResponseErrorDTO> exceptionHandler(Exception exception){
 		
 		ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO();
-		errorResponseDTO.setCode("E233");
-		errorResponseDTO.setMessage(exception.getLocalizedMessage());
+		errorResponseDTO.setCode(exception.getMessage().substring(0, exception.getMessage().indexOf('"')-1));
+		errorResponseDTO.setMessage(exception.getMessage().substring(exception.getMessage().indexOf('"')+1, exception.getMessage().lastIndexOf('"')));
 		
 		ResponseErrorDTO error = new ResponseErrorDTO();
 		error.setStatus("erorr");

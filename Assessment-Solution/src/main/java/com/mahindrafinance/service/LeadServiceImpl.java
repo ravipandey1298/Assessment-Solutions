@@ -3,6 +3,7 @@ package com.mahindrafinance.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.mahindrafinance.dto.LeadDTO;
@@ -18,6 +19,9 @@ public class LeadServiceImpl implements LeadService {
 	
 	@Autowired
 	private LeadRepository leadRepository;
+	
+	@Autowired
+	private Environment environment;
 
 	@Override
 	public Integer addLead(LeadDTO leadDTO) throws Exception{
@@ -28,7 +32,7 @@ public class LeadServiceImpl implements LeadService {
 		boolean isLeadPresent = leadRepository.existsById(leadDTO.getLeadId());
 		System.out.println(isLeadPresent);
 		if(isLeadPresent) 
-			throw new Exception("Lead Already Present in Database");
+			throw new Exception(environment.getProperty("Service.LEAD_ALREADY_PRESENT"));
 		Lead lead = new Lead().leadValueOf(leadDTO);
 		leadRepository.save(lead);
 		return leadDTO.getLeadId();
@@ -43,7 +47,7 @@ public class LeadServiceImpl implements LeadService {
 		try {
 		List<Lead> leads = leadRepository.findByMobileNumber(mobileNumber.toString());
 		if(leads.isEmpty()) {
-			throw new Exception("No Leads Found with the Mobile Number.");
+			throw new Exception(environment.getProperty("Service.LEADS_NOT_FOUND"));
 		}
 		return leads;
 		}catch (Exception e) {

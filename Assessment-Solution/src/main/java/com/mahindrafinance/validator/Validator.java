@@ -6,19 +6,19 @@ public class Validator {
 	
 	public void validateLead(LeadDTO leadDTO) throws Exception {
 		if(!isValidName(leadDTO.getFirstName()))
-			throw new Exception("Invalid First Name. First Name does not contain any spaces or any integer values.");
+			throw new Exception("Invalid Value. Name contains only Alphabets.");
 		
 		if(leadDTO.getMiddleName() != null && !isValidName(leadDTO.getMiddleName()))
-			throw new Exception("abc1");
+			throw new Exception("Invalid Value. Name contains only Alphabets.");
 		
 		if(!isValidName(leadDTO.getLastName()))
-			throw new Exception("abc2");
+			throw new Exception("Invalid Value. Name contains only Alphabets.");
 		
 		if(!isValidMobileNumber(leadDTO.getMobileNumber().toString()))
-			throw new Exception("abc3");
+			throw new Exception("Invalid Mobile Number. Mobile Number should not more than 10 and First Number is start from more than 5.");
 		
 		if(!isValidEmail(leadDTO.getEmail()))
-			throw new Exception("xyz4");
+			throw new Exception("Invalid Email. Use Correct Email");
 	}
 	
 	public Boolean isValidName(String firstName) {
@@ -37,10 +37,4 @@ public class Validator {
 		return email.matches(regex) ? true : false;
 	}
 	
-//	public Boolean isValidGender(String gender) {
-//		String regex = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@" 
-//		        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
-//		return email.matches(regex) ? true : false;
-//	}
-
 }

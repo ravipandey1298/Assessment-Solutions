@@ -48,8 +48,8 @@ public class LeadAPITest {
 		
 		ResponseEntity<ResponseSuccessDTO> response = leadAPI.addLead(dto);
 		
-		Assertions.assertEquals(response.getBody().getStatus(), "success");
-		Assertions.assertEquals(response.getBody().getData(), "Lead added successfully.");
+		Assertions.assertEquals("success", response.getBody().getStatus());
+		Assertions.assertEquals("Lead added successfully.", response.getBody().getData());
 		verify(leadAPI, times(1)).addLead(dto);
 		}catch(Exception e) {
 			log.info(e.getMessage() + e);
